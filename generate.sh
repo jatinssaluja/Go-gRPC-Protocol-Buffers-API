@@ -1,0 +1,1 @@
+protoc account/accountpb/account.proto --go_out=plugins=grpc:.

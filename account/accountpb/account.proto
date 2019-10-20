@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package account;
+option go_package = "accountpb";
+
+message Account {
+
+  string id = 1;
+  string owner = 2;
+  int64 balance = 3;
+}
+
+message CreateAccountRequest{
+  Account account = 1;
+}
+
+message CreateAccountResponse{
+  Account account = 1;// will have an account id
+}
+
+message UpdateAccountOwnerRequest{
+  string account_id = 1;
+  string owner = 2;
+}
+
+message UpdateAccountOwnerResponse{
+  Account account = 1;
+}
+
+message UpdateAccountBalanceRequest{
+  string account_id = 1;
+  string transaction_type = 2;
+  int64 amount = 3;
+}
+
+message UpdateAccountBalanceResponse{
+  Account account = 1;
+}
+
+
+
+service AccountService{
+
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse);
+  rpc UpdateAccountOwner(UpdateAccountOwnerRequest) returns (UpdateAccountOwnerResponse);
+  rpc UpdateAccountBalance(UpdateAccountBalanceRequest) returns (UpdateAccountBalanceResponse);
+
+}
